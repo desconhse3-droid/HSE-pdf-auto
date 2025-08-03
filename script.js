@@ -1,4 +1,3 @@
-
 async function processPDF() {
   const fileInput = document.getElementById('pdf-upload');
   const time = document.getElementById('time').value;
@@ -17,11 +16,11 @@ async function processPDF() {
   const signatureImage = await pdfDoc.embedPng(signatureImageBytes);
   const signatureDims = signatureImage.scale(0.5);
 
-  // Fine-tuned coordinates for HSE row inside the FIELD AUDIT table
-  lastPage.drawText("Muhammad Rehan Ameen", { x: 60, y: 250, size: 10 });
-  lastPage.drawImage(signatureImage, { x: 160, y: 240, width: signatureDims.width, height: signatureDims.height });
-  lastPage.drawText(time, { x: 320, y: 250, size: 10 });
-  lastPage.drawText(score, { x: 400, y: 250, size: 10 });
+  // ✅ Final aligned coordinates (inside HSE box of FIELD AUDIT)
+  lastPage.drawText("Muhammad Rehan Ameen", { x: 75, y: 268, size: 10 });
+  lastPage.drawImage(signatureImage, { x: 175, y: 260, width: signatureDims.width, height: signatureDims.height });
+  lastPage.drawText(time, { x: 320, y: 268, size: 10 });
+  lastPage.drawText(score, { x: 400, y: 268, size: 10 });
 
   const pdfBytes = await pdfDoc.save();
   const blob = new Blob([pdfBytes], { type: "application/pdf" });
